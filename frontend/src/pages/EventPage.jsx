@@ -9,6 +9,9 @@ export const EventPage = () => {
     const [customer, setCustomer] = useState('')
     const [tickets, setTickets] = useState(1)
 
+    const [bookingResult, seBookingResult] = useState(null)
+
+    const [isBooking, setIsBooking] = useState(false)
     const navigate = useNavigate()
 
     console.log(import.meta.env.APPLICATION_ID)
@@ -18,6 +21,7 @@ export const EventPage = () => {
 
     const getEvent = async () => {
         try {
+
             let resFetch = await fetch(`https://goldfish-app-fbulw.ondigitalocean.app/Event/${id}?applicationId=e8961fdc-6f43-4d5c-b569-aca1c3bc7ce2`, {
                 method: "GET",
                 headers: {
@@ -45,6 +49,7 @@ export const EventPage = () => {
     const bookEvent = async (e) => {
         e.preventDefault()
         try {
+            setIsBooking(true)
             let resFetch = await fetch(`https://goldfish-app-fbulw.ondigitalocean.app/Booking`, {
                 method: "POST",
                 headers: {
@@ -62,12 +67,13 @@ export const EventPage = () => {
 
             if (resFetch.ok) {
                 console.log('Reservado')
-                resFetch = await resFetch.json()
-
+                seBookingResult(true)
             }
             console.log('Fetch faild')
         } catch (error) {
             console.log(error)
+        } finally {
+            setIsBooking(false)
         }
 
 
@@ -102,6 +108,8 @@ export const EventPage = () => {
                                 <p>Available Seats: {event.availableTickets}  </p>
                             </div>
 
+                            {bookingResult == true && <p className="p-3 rounded-lg bg-emerald-100 border-2 border-emerald-500 text-emerald-700">Successful Booking</p>}
+
 
                             <form onSubmit={bookEvent} className="flex flex-col gap-3" style={{ display: showFrom ? 'flex' : 'none' }}>
                                 <div className="flex flex-col   gap-2">
@@ -119,8 +127,8 @@ export const EventPage = () => {
 
                                 <p>Total price: {(tickets * parseFloat(event.price)) | 0}</p>
 
-                                <button type="submit" className="py-2 px-6 bg-emerald-400 text-white cursor-pointer hover:bg-emerald-500" >
-                                    Book NOW
+                                <button type="submit" className=" flex justify-center gap-2 py-2 px-6 bg-emerald-400 text-white cursor-pointer hover:bg-emerald-500" >
+                                    <span style={{ display: isBooking ? 'block' : 'none' }} className="w-5 h-5 border-2 border-white border-l-transparent animate-spin rounded-full" ></span> BOOK NOW
                                 </button>
                             </form>
 
@@ -144,7 +152,7 @@ export const EventPage = () => {
 
 
 
-            </main>
+            </main >
         </>
 
     )

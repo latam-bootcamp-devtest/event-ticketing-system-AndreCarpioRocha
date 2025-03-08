@@ -65,7 +65,7 @@ export const BookignPage = () => {
 
                                         <div className="flex gap-2 ">
                                             <p className="font-bold">Price</p>
-                                            <p>0</p>
+                                            <p>{booking.price}</p>
                                         </div>
                                     </div>
                                 </article>
