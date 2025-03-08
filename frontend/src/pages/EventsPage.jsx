@@ -20,6 +20,11 @@ export const EventsPage = () => {
 
             if (resFetch.ok) {
                 resFetch = await resFetch.json()
+                resFetch = resFetch.map(event => {
+                    let dateFormat = new Date(event.date)
+                    event.dateFormat = dateFormat.getDay() + "/" + (dateFormat.getMonth() + 1) + "/" + dateFormat.getFullYear()
+                    return event
+                })
                 setEvens(resFetch)
 
             }

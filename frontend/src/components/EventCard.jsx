@@ -18,7 +18,7 @@ export const EventCard = ({ event }) => {
                 </div>
                 <div className="flex gap-2 ">
                     <p className="font-bold">Date:</p>
-                    <p>{event.date}</p>
+                    <p>{event.dateFormat}</p>
                 </div>
 
                 <div className="flex gap-2 ">
