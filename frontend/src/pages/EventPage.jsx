@@ -31,6 +31,9 @@ export const EventPage = () => {
 
             if (resFetch.ok) {
                 resFetch = await resFetch.json()
+                let dateFormat = new Date(resFetch.date)
+                dateFormat = dateFormat.getDay() + "/" + (dateFormat.getMonth() + 1) + "/" + dateFormat.getFullYear()
+                resFetch.dateFormat = dateFormat
                 setEvent(resFetch)
             }
             console.log('Fetch faild')
@@ -98,7 +101,7 @@ export const EventPage = () => {
                         <div className="flex flex-col gap-8">
                             <div>
                                 <p className="text-xl font-bold">Evenet: {event.name}</p>
-                                <p>Date: {event.date}</p>
+                                <p>Date: {event.dateFormat}</p>
                                 <p>Location: {event.location}</p>
                             </div>
 

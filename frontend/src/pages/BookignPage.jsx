@@ -65,7 +65,7 @@ export const BookignPage = () => {
                                         </div>
                                         <div className="flex gap-2 ">
                                             <p className="font-bold">Date:</p>
-                                            <p>{booking.date}</p>
+                                            <p>{booking.dateFormat}</p>
                                         </div>
 
                                         <div className="flex gap-2 ">
