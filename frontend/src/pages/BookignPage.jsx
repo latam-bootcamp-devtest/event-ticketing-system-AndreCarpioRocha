@@ -49,22 +49,22 @@ export const BookignPage = () => {
                         booking.map((booking, index) => {
                             return (
 
-                                <article key={booking.id} className="text-md p-4  flex flex-col gap-1.5 bg-gray-100 rounded-xl shadow-md cursor-pointer hover:bg-gray-400"  >
+                                <article key={booking.id} className="text-md p-4  flex flex-col gap-1.5 bg-gray-100 rounded-xl shadow-md cursor-pointer "  >
                                     <div>
-                                        <img className="w-full" src={''} alt="" />
+                                        <img className="w-full" src={booking.image} alt="" />
                                     </div>
                                     <div>
                                         <div className="flex gap-2 ">
                                             <p className="font-bold">Event:</p>
-                                            <p>{''}</p>
+                                            <p>{booking.name}</p>
                                         </div>
                                         <div className="flex gap-2 ">
                                             <p className="font-bold">Date:</p>
-                                            <p>{''}</p>
+                                            <p>{booking.date}</p>
                                         </div>
 
                                         <div className="flex gap-2 ">
-                                            <p className="font-bold">Availabe Seats:</p>
+                                            <p className="font-bold">Price</p>
                                             <p>0</p>
                                         </div>
                                     </div>
